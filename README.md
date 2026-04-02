@@ -61,6 +61,9 @@ bash install.sh
 ```bash
 tuner
 
+
+```
+
 Workflow под капотом:
 
     🧠 Commander инициализирует сессию и ставит задачи.
