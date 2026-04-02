@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+tuner_env/
+.env
+models/
+tuner-model/
+inference_temp.py
+generated_train.py
+hw_report.json
+unsloth_compiled_cache/
+.DS_Store
