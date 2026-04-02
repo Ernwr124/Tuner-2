@@ -1,0 +1,683 @@
+(venv) yernur@Nitro:~/tuner-2/tuner-cli$ python3 src/main.py
+
+╭────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                │
+│  ████████╗██╗   ██╗███╗   ██╗███████╗██████╗                                   │
+│  ╚══██╔══╝██║   ██║████╗  ██║██╔════╝██╔══██╗                                  │
+│     ██║   ██║   ██║██╔██╗ ██║█████╗  ██████╔╝                                  │
+│     ██║   ██║   ██║██║╚██╗██║██╔══╝  ██╔══██╗                                  │
+│     ██║   ╚██████╔╝██║ ╚████║███████╗██║  ██║                                  │
+│     ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝                                  │
+│                                                                                │
+╰─────────────────────────── v2.0 - ML? It's simple. ────────────────────────────╯
+╭────────────────────────────── Hardware Detected ───────────────────────────────╮
+│ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓                       │
+│ ┃ Компонент                ┃ Характеристики            ┃                       │
+│ ┡━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩                       │
+│ │ Операционная система     │ Linux (6.17.0-19-generic) │                       │
+│ │ Оперативная память (RAM) │ 14.93 GB                  │                       │
+│ │ GPU (NVIDIA)             │ NVIDIA GeForce RTX 2050   │                       │
+│ │ VRAM                     │ 4.0 GB                    │                       │
+│ │ Движок обучения          │ UNSLOTH (Ultra Fast)      │                       │
+│ └──────────────────────────┴───────────────────────────┘                       │
+╰────────────────────────────────────────────────────────────────────────────────╯
+
+Добро пожаловать в будущее обучения LLM!
+1. Train Model (Дообучить модель)
+2. Chat (Протестировать веса)
+3. Dataset Studio (Подготовить данные)
+4. Settings (Настройки)
+5. Exit (Выход)
+
+Что будем делать? [1/2/3/4/5] (1): 1
+
+🔍 Агент-Инженер проверяет среду...
+
+=== ИНИЦИАЦИЯ МИССИИ ОБУЧЕНИЯ ===
+Какова цель обучения? (Abai Kazakh Expert): Сделай эксперта по Tuner-2, который знает про Армию Агентов, но не 
+  забыл, что такое стол и яблоко.
+Выберите базу для обучения:
+1. Qwen 2.5 (1.5B) - Рекомендуется (Умнее, лучше для каз. языка)
+2. Llama 3.2 (1B) - Быстрее (Самая легкая)
+Выберите модель [1/2] (1): 2
+Please select one of the available options
+Выберите модель [1/2] (1): 2
+Путь к датасету (data/abai_train.jsonl): /home/yernur/tuner-2/tuner-cli/newdataset/train.jsonl
+
+Проверка модели unsloth/Llama-3.2-1B-Instruct-bnb-4bit...
+Fetching 8 files: 100%|██████████████████████████| 8/8 [00:00<00:00, 55553.70it/s]
+Download complete: : 0.00B [00:00, ?B/s]              ✅ Модель готова к работе!s]
+Download complete: : 0.00B [00:00, ?B/s]
+╭──────────────────────────────── План Командора ────────────────────────────────╮
+│ import json                                                                    │
+│                                                                                │
+│ plan = { "Data": "Подготовить и очистить датасет по пути                       │
+│ /home/yernur/tuner-2/tuner-cli/newdataset/train.jsonl. Разделить на train/val, │
+│ при необходимости выполнить аугментацию.", "Hardware": "Проанализировать       │
+│ доступные ресурсы (14.9 GB RAM, 4 GB VRAM, RTX 2050). Выбрать LoRA rank, batch │
+│ size и gradient accumulation, оптимальные для 4 GB VRAM.", "Training":         │
+│ "Сгенерировать скрипт обучения с использованием Unsloth, применив выбранные    │
+│ параметры LoRA, задать количество эпох, learning rate и оптимизатор.",         │
+│ "Validator": "После завершения обучения выполнить оценку модели на             │
+│ валидационном наборе, сравнить метрики с базовой моделью и вывести отчет." }   │
+│                                                                                │
+│ def commander(): print("Внимание! Операция Tuner-2 начата.") for unit, mission │
+│ in plan.items(): print(f"{unit} Отряд: {mission}")                             │
+│                                                                                │
+│ if name == "main": commander()                                                 │
+╰────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────── Отчет Инженера (Железо) ────────────────────────────╮
+│ import os                                                                      │
+│                                                                                │
+│ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ │
+│ ┃                          Hardware specifications                           ┃ │
+│ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ │
+│                                                                                │
+│ RAM_GB = 14.93 VRAM_GB = 4.0                                                   │
+│                                                                                │
+│ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ │
+│ ┃              Determine LoRA rank (r) based on available VRAM               ┃ │
+│ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ │
+│                                                                                │
+│ if VRAM_GB >= 12: LORA_R = 64 elif VRAM_GB >= 8: LORA_R = 32 elif VRAM_GB >=   │
+│ 4: LORA_R = 16 else: LORA_R = 8                                                │
+│                                                                                │
+│ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ │
+│ ┃            Alpha is typically set to 2 * r for stable training             ┃ │
+│ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ │
+│                                                                                │
+│ LORA_ALPHA = LORA_R * 2                                                        │
+│                                                                                │
+│ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ │
+│ ┃ Batch size: keep it low to fit into 4GB VRAM; 1 is safest, 2 may work for  ┃ │
+│ ┃                                small models                                ┃ │
+│ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ │
+│                                                                                │
+│ BATCH_SIZE = 1                                                                 │
+│                                                                                │
+│ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ │
+│ ┃   Quantization type: use 4-bit QLoRA for maximum memory efficiency with    ┃ │
+│ ┃                                  Unsloth                                   ┃ │
+│ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ │
+│                                                                                │
+│ QUANTIZATION = "4bit"                                                          │
+│                                                                                │
+│ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ │
+│ ┃          Export parameters as a dictionary for downstream agents           ┃ │
+│ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ │
+│                                                                                │
+│ LORA_PARAMS = { "r": LORA_R, "alpha": LORA_ALPHA, "batch_size": BATCH_SIZE,    │
+│ "quantization": QUANTIZATION, } print("Selected LoRA parameters:",             │
+│ LORA_PARAMS)                                                                   │
+╰────────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────── Анализ Данных ─────────────────────────────────╮
+│ import json                                                                    │
+│                                                                                │
+│ data_strings = [ '{"prompt": "Привет!", "completion": "Привет! Я твой          │
+│ ИИ-помощник, обученный через Tuner-2. Чем могу помочь?"}\n', '{"prompt": "Как  │
+│ тебя зовут?", "completion": "Меня зовут Tuner AI. Я — модель Llama 3.2,        │
+│ дообученная для работы с армией агентов."}\n', '{"prompt": "Что ты такое?",    │
+│ "completion": "Я — большая языковая модель, прошедшая файн-тюнинг в системе    │
+│ Tuner-2."}\n', '{"prompt": "Что такое парта?", "completion": "Парта — это      │
+│ предмет мебели, специальный стол для учеников в школе или студентов в учебном  │
+│ заведении."}\n', '{"prompt": "Зачем нужно дерево?", "completion": "Деревья     │
+│ вырабатывают кислород, дают тень и используются как строительный               │
+│ материал."}\n' ]                                                               │
+│                                                                                │
+│ def validate_entry(entry): required_keys = {"prompt", "completion"} if not     │
+│ isinstance(entry, dict): return False, "Entry is not a dict" missing =         │
+│ required_keys - entry.keys() if missing: return False, f"Missing keys:         │
+│ {missing}" if not isinstance(entry["prompt"], str) or not                      │
+│ isinstance(entry["completion"], str): return False, "Prompt or completion is   │
+│ not a string" if len(entry["prompt"].strip()) == 0 or                          │
+│ len(entry["completion"].strip()) == 0: return False, "Empty prompt or          │
+│ completion" return True, ""                                                    │
+│                                                                                │
+│ def parse_and_validate(strings): valid_entries = [] errors = [] for idx, s in  │
+│ enumerate(strings): try: entry = json.loads(s.strip()) except                  │
+│ json.JSONDecodeError as e: errors.append((idx, f"JSON decode error: {e}"))     │
+│ continue ok, msg = validate_entry(entry) if ok: valid_entries.append(entry)    │
+│ else: errors.append((idx, msg)) return valid_entries, errors                   │
+│                                                                                │
+│ valid_data, validation_errors = parse_and_validate(data_strings)               │
+│                                                                                │
+│ print("Valid entries:", len(valid_data)) print("Errors:",                      │
+│ len(validation_errors)) for idx, err in validation_errors: print(f"Line {idx}: │
+│ {err}")                                                                        │
+╰────────────────────────────────────────────────────────────────────────────────╯
+
+Все агенты готовы. Начать генерацию кода и запуск? [y/n]: y
+✅ Код обучения успешно сгенерирован!
+🚀 ЗАПУСТИТЬ ОБУЧЕНИЕ ПРЯМО СЕЙЧАС? [y/n]: y
+
+ВНИМАНИЕ: Обучение может занять время и нагрузить GPU/CPU.
+Нажмите Ctrl+C для прерывания процесса.
+
+[TRAIN] 🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+[TRAIN] Unsloth: Your Flash Attention 2 installation seems to be broken. Using 
+Xformers instead. No performance changes will be seen.
+[TRAIN] 🦥 Unsloth Zoo will now patch everything to make training faster!
+[TRAIN] 🚀 ЗАГРУЗКА БАЗОВОЙ МОДЕЛИ: unsloth/Llama-3.2-1B-Instruct-bnb-4bit
+[TRAIN] ==((====))==  Unsloth 2026.3.18: Fast Llama patching. Transformers: 5.3.0.
+[TRAIN] \\   /|    NVIDIA GeForce RTX 2050. Num GPUs = 1. Max memory: 3.68 GB. 
+Platform: Linux.
+[TRAIN] O^O/ \_/ \    Torch: 2.5.1+cu121. CUDA: 8.6. CUDA Toolkit: 12.1. Triton: 
+3.1.0
+[TRAIN] \        /    Bfloat16 = TRUE. FA [Xformers = None. FA2 = False]
+[TRAIN] "-____-"     Free license: http://github.com/unslothai/unsloth
+[TRAIN] Unsloth: Fast downloading is enabled - ignore downloading bars which are 
+red colored!
+[TRAIN] 
+[TRAIN] Loading weights:   0%|          | 0/146 [00:00<?, ?it/s]
+[TRAIN] Loading weights:  10%|█         | 15/146 [00:00<00:00, 149.96it/s]
+[TRAIN] Loading weights:  45%|████▌     | 66/146 [00:00<00:00, 354.17it/s]
+[TRAIN] Loading weights:  77%|███████▋  | 113/146 [00:00<00:00, 405.54it/s]
+[TRAIN] Loading weights: 100%|██████████| 146/146 [00:00<00:00, 395.14it/s]
+[TRAIN] Unsloth: Will load unsloth/llama-3.2-1b-instruct-bnb-4bit as a legacy 
+tokenizer.
+[TRAIN] Unsloth 2026.3.18 patched 16 layers with 16 QKV layers, 16 O layers and 16
+MLP layers.
+[TRAIN] 📊 ЗАГРУЗКА ДАТАСЕТА: newdataset/train.jsonl
+[TRAIN] 
+[TRAIN] Map:   0%|          | 0/30 [00:00<?, ? examples/s]
+[TRAIN] Map: 100%|██████████| 30/30 [00:00<00:00, 556.01 examples/s]
+[TRAIN] 
+[TRAIN] Unsloth: Tokenizing ["prompt"+"completion"] (num_proc=8):   0%|          |
+0/30 [00:00<?, ? examples/s]
+[TRAIN] Unsloth: Tokenizing ["prompt"+"completion"] (num_proc=8):  13%|█▎        |
+4/30 [00:02<00:14,  1.85 examples/s]
+[TRAIN] Unsloth: Tokenizing ["prompt"+"completion"] (num_proc=8):  27%|██▋       |
+8/30 [00:02<00:05,  3.72 examples/s]
+[TRAIN] Unsloth: Tokenizing ["prompt"+"completion"] (num_proc=8):  40%|████      |
+12/30 [00:02<00:03,  5.46 examples/s]
+[TRAIN] Unsloth: Tokenizing ["prompt"+"completion"] (num_proc=8):  53%|█████▎    |
+16/30 [00:03<00:02,  6.94 examples/s]
+[TRAIN] Unsloth: Tokenizing ["prompt"+"completion"] (num_proc=8):  67%|██████▋   |
+20/30 [00:03<00:01,  8.98 examples/s]
+[TRAIN] Unsloth: Tokenizing ["prompt"+"completion"] (num_proc=8):  80%|████████  |
+24/30 [00:03<00:00,  9.91 examples/s]
+[TRAIN] Unsloth: Tokenizing ["prompt"+"completion"] (num_proc=8):  90%|█████████ |
+27/30 [00:03<00:00,  9.85 examples/s]
+[TRAIN] Unsloth: Tokenizing ["prompt"+"completion"] (num_proc=8): 100%|██████████|
+30/30 [00:04<00:00, 10.26 examples/s]
+[TRAIN] Unsloth: Tokenizing ["prompt"+"completion"] (num_proc=8): 100%|██████████|
+30/30 [00:04<00:00,  6.69 examples/s]
+[TRAIN] ==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+[TRAIN] \\   /|    Num examples = 30 | Num Epochs = 15 | Total steps = 60
+[TRAIN] O^O/ \_/ \    Batch size per device = 2 | Gradient accumulation steps = 4
+[TRAIN] \        /    Data Parallel GPUs = 1 | Total batch size (2 x 4 x 1) = 8
+[TRAIN] "-____-"     Trainable parameters = 11,272,192 of 1,247,086,592 (0.90% 
+trained)
+[TRAIN] 🔥 ОБУЧЕНИЕ НОВЫХ СЛОЕВ (ADAPTERS)...
+[TRAIN] 
+[TRAIN] 0%|          | 0/60 [00:00<?, ?it/s]
+[TRAIN] 2%|▏         | 1/60 [00:11<10:55, 11.11s/it]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 2%|▏         | 1/60 [00:11<10:55, 11.11s/it]
+[TRAIN] 3%|▎         | 2/60 [00:12<05:05,  5.27s/it]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 3%|▎         | 2/60 [00:12<05:05,  5.27s/it]
+[TRAIN] 5%|▌         | 3/60 [00:13<03:01,  3.19s/it]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 5%|▌         | 3/60 [00:13<03:01,  3.19s/it]
+[TRAIN] 7%|▋         | 4/60 [00:13<02:00,  2.15s/it]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 7%|▋         | 4/60 [00:13<02:00,  2.15s/it]
+[TRAIN] 8%|▊         | 5/60 [00:14<01:29,  1.62s/it]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 8%|▊         | 5/60 [00:14<01:29,  1.62s/it]
+[TRAIN] 10%|█         | 6/60 [00:14<01:11,  1.32s/it]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 10%|█         | 6/60 [00:14<01:11,  1.32s/it]
+[TRAIN] 12%|█▏        | 7/60 [00:15<00:59,  1.11s/it]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 12%|█▏        | 7/60 [00:15<00:59,  1.11s/it]
+[TRAIN] 13%|█▎        | 8/60 [00:16<00:48,  1.08it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 13%|█▎        | 8/60 [00:16<00:48,  1.08it/s]
+[TRAIN] 15%|█▌        | 9/60 [00:16<00:43,  1.16it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 15%|█▌        | 9/60 [00:16<00:43,  1.16it/s]
+[TRAIN] 17%|█▋        | 10/60 [00:17<00:40,  1.23it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 17%|█▋        | 10/60 [00:17<00:40,  1.23it/s]
+[TRAIN] 18%|█▊        | 11/60 [00:18<00:38,  1.29it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 18%|█▊        | 11/60 [00:18<00:38,  1.29it/s]
+[TRAIN] 20%|██        | 12/60 [00:18<00:33,  1.43it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 20%|██        | 12/60 [00:18<00:33,  1.43it/s]
+[TRAIN] 22%|██▏       | 13/60 [00:19<00:32,  1.43it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 22%|██▏       | 13/60 [00:19<00:32,  1.43it/s]
+[TRAIN] 23%|██▎       | 14/60 [00:20<00:32,  1.43it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 23%|██▎       | 14/60 [00:20<00:32,  1.43it/s]
+[TRAIN] 25%|██▌       | 15/60 [00:20<00:31,  1.43it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 25%|██▌       | 15/60 [00:20<00:31,  1.43it/s]
+[TRAIN] 27%|██▋       | 16/60 [00:21<00:28,  1.55it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 27%|██▋       | 16/60 [00:21<00:28,  1.55it/s]
+[TRAIN] 28%|██▊       | 17/60 [00:22<00:28,  1.49it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 28%|██▊       | 17/60 [00:22<00:28,  1.49it/s]
+[TRAIN] 30%|███       | 18/60 [00:22<00:28,  1.49it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 30%|███       | 18/60 [00:22<00:28,  1.49it/s]
+[TRAIN] 32%|███▏      | 19/60 [00:23<00:27,  1.48it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 32%|███▏      | 19/60 [00:23<00:27,  1.48it/s]
+[TRAIN] 33%|███▎      | 20/60 [00:24<00:25,  1.58it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 33%|███▎      | 20/60 [00:24<00:25,  1.58it/s]
+[TRAIN] 35%|███▌      | 21/60 [00:24<00:25,  1.53it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 35%|███▌      | 21/60 [00:24<00:25,  1.53it/s]
+[TRAIN] 37%|███▋      | 22/60 [00:25<00:25,  1.50it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 37%|███▋      | 22/60 [00:25<00:25,  1.50it/s]
+[TRAIN] 38%|███▊      | 23/60 [00:26<00:24,  1.49it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 38%|███▊      | 23/60 [00:26<00:24,  1.49it/s]
+[TRAIN] 40%|████      | 24/60 [00:26<00:22,  1.57it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 40%|████      | 24/60 [00:26<00:22,  1.57it/s]
+[TRAIN] 42%|████▏     | 25/60 [00:27<00:22,  1.53it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 42%|████▏     | 25/60 [00:27<00:22,  1.53it/s]
+[TRAIN] 43%|████▎     | 26/60 [00:28<00:22,  1.48it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 43%|████▎     | 26/60 [00:28<00:22,  1.48it/s]
+[TRAIN] 45%|████▌     | 27/60 [00:28<00:22,  1.47it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 45%|████▌     | 27/60 [00:28<00:22,  1.47it/s]
+[TRAIN] 47%|████▋     | 28/60 [00:29<00:20,  1.59it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 47%|████▋     | 28/60 [00:29<00:20,  1.59it/s]
+[TRAIN] 48%|████▊     | 29/60 [00:30<00:20,  1.54it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 48%|████▊     | 29/60 [00:30<00:20,  1.54it/s]
+[TRAIN] 50%|█████     | 30/60 [00:30<00:20,  1.49it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 50%|█████     | 30/60 [00:30<00:20,  1.49it/s]
+[TRAIN] 52%|█████▏    | 31/60 [00:31<00:19,  1.48it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 52%|█████▏    | 31/60 [00:31<00:19,  1.48it/s]
+[TRAIN] 53%|█████▎    | 32/60 [00:31<00:17,  1.58it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 53%|█████▎    | 32/60 [00:31<00:17,  1.58it/s]
+[TRAIN] 55%|█████▌    | 33/60 [00:32<00:17,  1.54it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 55%|█████▌    | 33/60 [00:32<00:17,  1.54it/s]
+[TRAIN] 57%|█████▋    | 34/60 [00:33<00:17,  1.51it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 57%|█████▋    | 34/60 [00:33<00:17,  1.51it/s]
+[TRAIN] 58%|█████▊    | 35/60 [00:34<00:16,  1.48it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 58%|█████▊    | 35/60 [00:34<00:16,  1.48it/s]
+[TRAIN] 60%|██████    | 36/60 [00:34<00:15,  1.57it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 60%|██████    | 36/60 [00:34<00:15,  1.57it/s]
+[TRAIN] 62%|██████▏   | 37/60 [00:35<00:15,  1.50it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 62%|██████▏   | 37/60 [00:35<00:15,  1.50it/s]
+[TRAIN] 63%|██████▎   | 38/60 [00:36<00:14,  1.49it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 63%|██████▎   | 38/60 [00:36<00:14,  1.49it/s]
+[TRAIN] 65%|██████▌   | 39/60 [00:36<00:14,  1.48it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 65%|██████▌   | 39/60 [00:36<00:14,  1.48it/s]
+[TRAIN] 67%|██████▋   | 40/60 [00:37<00:12,  1.59it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 67%|██████▋   | 40/60 [00:37<00:12,  1.59it/s]
+[TRAIN] 68%|██████▊   | 41/60 [00:37<00:12,  1.53it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 68%|██████▊   | 41/60 [00:37<00:12,  1.53it/s]
+[TRAIN] 70%|███████   | 42/60 [00:38<00:12,  1.50it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 70%|███████   | 42/60 [00:38<00:12,  1.50it/s]
+[TRAIN] 72%|███████▏  | 43/60 [00:39<00:11,  1.47it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 72%|███████▏  | 43/60 [00:39<00:11,  1.47it/s]
+[TRAIN] 73%|███████▎  | 44/60 [00:39<00:10,  1.57it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 73%|███████▎  | 44/60 [00:39<00:10,  1.57it/s]
+[TRAIN] 75%|███████▌  | 45/60 [00:40<00:09,  1.52it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 75%|███████▌  | 45/60 [00:40<00:09,  1.52it/s]
+[TRAIN] 77%|███████▋  | 46/60 [00:41<00:09,  1.46it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 77%|███████▋  | 46/60 [00:41<00:09,  1.46it/s]
+[TRAIN] 78%|███████▊  | 47/60 [00:42<00:09,  1.43it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 78%|███████▊  | 47/60 [00:42<00:09,  1.43it/s]
+[TRAIN] 80%|████████  | 48/60 [00:42<00:07,  1.54it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 80%|████████  | 48/60 [00:42<00:07,  1.54it/s]
+[TRAIN] 82%|████████▏ | 49/60 [00:43<00:07,  1.49it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 82%|████████▏ | 49/60 [00:43<00:07,  1.49it/s]
+[TRAIN] 83%|████████▎ | 50/60 [00:44<00:06,  1.45it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 83%|████████▎ | 50/60 [00:44<00:06,  1.45it/s]
+[TRAIN] 85%|████████▌ | 51/60 [00:44<00:06,  1.44it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 85%|████████▌ | 51/60 [00:44<00:06,  1.44it/s]
+[TRAIN] 87%|████████▋ | 52/60 [00:45<00:05,  1.53it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 87%|████████▋ | 52/60 [00:45<00:05,  1.53it/s]
+[TRAIN] 88%|████████▊ | 53/60 [00:46<00:04,  1.48it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 88%|████████▊ | 53/60 [00:46<00:04,  1.48it/s]
+[TRAIN] 90%|█████████ | 54/60 [00:46<00:04,  1.44it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 90%|█████████ | 54/60 [00:46<00:04,  1.44it/s]
+[TRAIN] 92%|█████████▏| 55/60 [00:47<00:03,  1.42it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 92%|█████████▏| 55/60 [00:47<00:03,  1.42it/s]
+[TRAIN] 93%|█████████▎| 56/60 [00:48<00:02,  1.53it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 93%|█████████▎| 56/60 [00:48<00:02,  1.53it/s]
+[TRAIN] 95%|█████████▌| 57/60 [00:48<00:02,  1.49it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 95%|█████████▌| 57/60 [00:48<00:02,  1.49it/s]
+[TRAIN] 97%|█████████▋| 58/60 [00:49<00:01,  1.46it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 97%|█████████▋| 58/60 [00:49<00:01,  1.46it/s]
+[TRAIN] 98%|█████████▊| 59/60 [00:50<00:00,  1.44it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 98%|█████████▊| 59/60 [00:50<00:00,  1.44it/s]
+[TRAIN] 100%|██████████| 60/60 [00:50<00:00,  1.53it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 100%|██████████| 60/60 [00:50<00:00,  1.53it/s]
+[TRAIN] 
+[TRAIN] 
+[TRAIN] 100%|██████████| 60/60 [00:54<00:00,  1.53it/s]
+[TRAIN] 100%|██████████| 60/60 [00:54<00:00,  1.11it/s]
+[TRAIN] {'loss': '3.576', 'grad_norm': '1.622', 'learning_rate': '0', 
+'epoch': '0.2667'}
+[TRAIN] {'loss': '4.001', 'grad_norm': '1.922', 'learning_rate': '4e-05', 
+'epoch': '0.5333'}
+[TRAIN] {'loss': '3.983', 'grad_norm': '2.014', 'learning_rate': '8e-05', 
+'epoch': '0.8'}
+[TRAIN] {'loss': '3.647', 'grad_norm': '2.224', 'learning_rate': '0.00012', 
+'epoch': '1'}
+[TRAIN] {'loss': '3.568', 'grad_norm': '1.954', 'learning_rate': '0.00016', 
+'epoch': '1.267'}
+[TRAIN] {'loss': '3.822', 'grad_norm': '2.106', 'learning_rate': '0.0002', 
+'epoch': '1.533'}
+[TRAIN] {'loss': '3.262', 'grad_norm': '2.167', 'learning_rate': '0.0001964',
+'epoch': '1.8'}
+[TRAIN] {'loss': '3.424', 'grad_norm': '1.938', 'learning_rate': '0.0001927',
+'epoch': '2'}
+[TRAIN] {'loss': '2.775', 'grad_norm': '1.889', 'learning_rate': '0.0001891',
+'epoch': '2.267'}
+[TRAIN] {'loss': '2.796', 'grad_norm': '1.966', 'learning_rate': '0.0001855',
+'epoch': '2.533'}
+[TRAIN] {'loss': '2.482', 'grad_norm': '1.889', 'learning_rate': '0.0001818',
+'epoch': '2.8'}
+[TRAIN] {'loss': '2.817', 'grad_norm': '2.484', 'learning_rate': '0.0001782',
+'epoch': '3'}
+[TRAIN] {'loss': '2.487', 'grad_norm': '2.214', 'learning_rate': '0.0001745',
+'epoch': '3.267'}
+[TRAIN] {'loss': '2.018', 'grad_norm': '1.833', 'learning_rate': '0.0001709',
+'epoch': '3.533'}
+[TRAIN] {'loss': '2.04', 'grad_norm': '2.361', 'learning_rate': '0.0001673', 
+'epoch': '3.8'}
+[TRAIN] {'loss': '1.98', 'grad_norm': '2.578', 'learning_rate': '0.0001636', 
+'epoch': '4'}
+[TRAIN] {'loss': '1.759', 'grad_norm': '2.097', 'learning_rate': '0.00016', 
+'epoch': '4.267'}
+[TRAIN] {'loss': '1.865', 'grad_norm': '2.537', 'learning_rate': '0.0001564',
+'epoch': '4.533'}
+[TRAIN] {'loss': '1.612', 'grad_norm': '2.66', 'learning_rate': '0.0001527', 
+'epoch': '4.8'}
+[TRAIN] {'loss': '1.475', 'grad_norm': '2.405', 'learning_rate': '0.0001491',
+'epoch': '5'}
+[TRAIN] {'loss': '1.255', 'grad_norm': '2.138', 'learning_rate': '0.0001455',
+'epoch': '5.267'}
+[TRAIN] {'loss': '1.167', 'grad_norm': '2.359', 'learning_rate': '0.0001418',
+'epoch': '5.533'}
+[TRAIN] {'loss': '1.331', 'grad_norm': '2.395', 'learning_rate': '0.0001382',
+'epoch': '5.8'}
+[TRAIN] {'loss': '1.224', 'grad_norm': '2.939', 'learning_rate': '0.0001345',
+'epoch': '6'}
+[TRAIN] {'loss': '0.8984', 'grad_norm': '3.524', 'learning_rate': 
+'0.0001309', 'epoch': '6.267'}
+[TRAIN] {'loss': '0.8644', 'grad_norm': '1.916', 'learning_rate': 
+'0.0001273', 'epoch': '6.533'}
+[TRAIN] {'loss': '0.8185', 'grad_norm': '2.356', 'learning_rate': 
+'0.0001236', 'epoch': '6.8'}
+[TRAIN] {'loss': '0.9848', 'grad_norm': '3.308', 'learning_rate': '0.00012', 
+'epoch': '7'}
+[TRAIN] {'loss': '0.6579', 'grad_norm': '2.288', 'learning_rate': 
+'0.0001164', 'epoch': '7.267'}
+[TRAIN] {'loss': '0.5871', 'grad_norm': '1.896', 'learning_rate': 
+'0.0001127', 'epoch': '7.533'}
+[TRAIN] {'loss': '0.5844', 'grad_norm': '2.073', 'learning_rate': 
+'0.0001091', 'epoch': '7.8'}
+[TRAIN] {'loss': '0.6184', 'grad_norm': '2.865', 'learning_rate': 
+'0.0001055', 'epoch': '8'}
+[TRAIN] {'loss': '0.318', 'grad_norm': '1.635', 'learning_rate': '0.0001018',
+'epoch': '8.267'}
+[TRAIN] {'loss': '0.5285', 'grad_norm': '2.157', 'learning_rate': 
+'9.818e-05', 'epoch': '8.533'}
+[TRAIN] {'loss': '0.4076', 'grad_norm': '1.891', 'learning_rate': 
+'9.455e-05', 'epoch': '8.8'}
+[TRAIN] {'loss': '0.3138', 'grad_norm': '1.677', 'learning_rate': 
+'9.091e-05', 'epoch': '9'}
+[TRAIN] {'loss': '0.2862', 'grad_norm': '1.31', 'learning_rate': '8.727e-05',
+'epoch': '9.267'}
+[TRAIN] {'loss': '0.2989', 'grad_norm': '1.766', 'learning_rate': 
+'8.364e-05', 'epoch': '9.533'}
+[TRAIN] {'loss': '0.1687', 'grad_norm': '1.292', 'learning_rate': '8e-05', 
+'epoch': '9.8'}
+[TRAIN] {'loss': '0.1673', 'grad_norm': '1.624', 'learning_rate': 
+'7.636e-05', 'epoch': '10'}
+[TRAIN] {'loss': '0.1529', 'grad_norm': '1.174', 'learning_rate': 
+'7.273e-05', 'epoch': '10.27'}
+[TRAIN] {'loss': '0.1538', 'grad_norm': '1.044', 'learning_rate': 
+'6.909e-05', 'epoch': '10.53'}
+[TRAIN] {'loss': '0.09536', 'grad_norm': '0.8842', 'learning_rate': 
+'6.545e-05', 'epoch': '10.8'}
+[TRAIN] {'loss': '0.1279', 'grad_norm': '1.274', 'learning_rate': 
+'6.182e-05', 'epoch': '11'}
+[TRAIN] {'loss': '0.1067', 'grad_norm': '0.8433', 'learning_rate': 
+'5.818e-05', 'epoch': '11.27'}
+[TRAIN] {'loss': '0.08366', 'grad_norm': '0.7153', 'learning_rate': 
+'5.455e-05', 'epoch': '11.53'}
+[TRAIN] {'loss': '0.06769', 'grad_norm': '1.247', 'learning_rate': 
+'5.091e-05', 'epoch': '11.8'}
+[TRAIN] {'loss': '0.04703', 'grad_norm': '0.4654', 'learning_rate': 
+'4.727e-05', 'epoch': '12'}
+[TRAIN] {'loss': '0.05211', 'grad_norm': '0.4383', 'learning_rate': 
+'4.364e-05', 'epoch': '12.27'}
+[TRAIN] {'loss': '0.05237', 'grad_norm': '0.4565', 'learning_rate': '4e-05', 
+'epoch': '12.53'}
+[TRAIN] {'loss': '0.04212', 'grad_norm': '0.3455', 'learning_rate': 
+'3.636e-05', 'epoch': '12.8'}
+[TRAIN] {'loss': '0.04957', 'grad_norm': '0.518', 'learning_rate': 
+'3.273e-05', 'epoch': '13'}
+[TRAIN] {'loss': '0.03926', 'grad_norm': '0.3296', 'learning_rate': 
+'2.909e-05', 'epoch': '13.27'}
+[TRAIN] {'loss': '0.0382', 'grad_norm': '0.3096', 'learning_rate': 
+'2.545e-05', 'epoch': '13.53'}
+[TRAIN] {'loss': '0.03528', 'grad_norm': '0.287', 'learning_rate': 
+'2.182e-05', 'epoch': '13.8'}
+[TRAIN] {'loss': '0.04104', 'grad_norm': '0.4146', 'learning_rate': 
+'1.818e-05', 'epoch': '14'}
+[TRAIN] {'loss': '0.03634', 'grad_norm': '0.331', 'learning_rate': 
+'1.455e-05', 'epoch': '14.27'}
+[TRAIN] {'loss': '0.03619', 'grad_norm': '0.2748', 'learning_rate': 
+'1.091e-05', 'epoch': '14.53'}
+[TRAIN] {'loss': '0.02982', 'grad_norm': '0.2204', 'learning_rate': 
+'7.273e-06', 'epoch': '14.8'}
+[TRAIN] {'loss': '0.03321', 'grad_norm': '0.3029', 'learning_rate': 
+'3.636e-06', 'epoch': '15'}
+[TRAIN] {'train_runtime': '54.24', 'train_samples_per_second': '8.85', 
+'train_steps_per_second': '1.106', 'train_loss': '1.17', 'epoch': '15'}
+[TRAIN] 💾 СОХРАНЕНИЕ АДАПТЕРА В 'tuner-model'...
+[TRAIN] ✅ ГОТОВО! Теперь ваша модель имеет 'внешние мозги' в папке 
+tuner-model.
+
+🏆 ОБУЧЕНИЕ ЗАВЕРШЕНО УСПЕШНО!
+Ваша модель сохранена в папку 'tuner-model'.
+(venv) yernur@Nitro:~/tuner-2/tuner-cli$ python3 src/main.py
+
+╭───────────────────────────────────────────────────────────────────────────────╮
+│                                                                               │
+│  ████████╗██╗   ██╗███╗   ██╗███████╗██████╗                                  │
+│  ╚══██╔══╝██║   ██║████╗  ██║██╔════╝██╔══██╗                                 │
+│     ██║   ██║   ██║██╔██╗ ██║█████╗  ██████╔╝                                 │
+│     ██║   ██║   ██║██║╚██╗██║██╔══╝  ██╔══██╗                                 │
+│     ██║   ╚██████╔╝██║ ╚████║███████╗██║  ██║                                 │
+│     ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝                                 │
+│                                                                               │
+╰─────────────────────────── v2.0 - ML? It's simple. ───────────────────────────╯
+╭────────────────────────────── Hardware Detected ──────────────────────────────╮
+│ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓                      │
+│ ┃ Компонент                ┃ Характеристики            ┃                      │
+│ ┡━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩                      │
+│ │ Операционная система     │ Linux (6.17.0-19-generic) │                      │
+│ │ Оперативная память (RAM) │ 14.93 GB                  │                      │
+│ │ GPU (NVIDIA)             │ NVIDIA GeForce RTX 2050   │                      │
+│ │ VRAM                     │ 4.0 GB                    │                      │
+│ │ Движок обучения          │ UNSLOTH (Ultra Fast)      │                      │
+│ └──────────────────────────┴───────────────────────────┘                      │
+╰───────────────────────────────────────────────────────────────────────────────╯
+
+Добро пожаловать в будущее обучения LLM!
+1. Train Model (Дообучить модель)
+2. Chat (Протестировать веса)
+3. Dataset Studio (Подготовить данные)
+4. Settings (Настройки)
+5. Exit (Выход)
+
+Что будем делать? [1/2/3/4/5] (1): 2
+
+=== РЕЖИМ ТЕСТИРОВАНИЯ (CHAT) ===
+Доступные модели:
+1. tuner-model
+
+Выберите номер модели [1]: 1
+🚀 Запуск инференса...
+🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+Unsloth: Your Flash Attention 2 installation seems to be broken. Using Xformers instead. No performance changes will be seen.
+🦥 Unsloth Zoo will now patch everything to make training faster!
+==((====))==  Unsloth 2026.3.18: Fast Llama patching. Transformers: 5.3.0.
+   \\   /|    NVIDIA GeForce RTX 2050. Num GPUs = 1. Max memory: 3.68 GB. Platform: Linux.
+O^O/ \_/ \    Torch: 2.5.1+cu121. CUDA: 8.6. CUDA Toolkit: 12.1. Triton: 3.1.0
+\        /    Bfloat16 = TRUE. FA [Xformers = None. FA2 = False]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+Loading weights: 100%|████████████████████████| 146/146 [00:00<00:00, 384.94it/s]
+Unsloth: Will load unsloth/llama-3.2-1b-instruct-bnb-4bit as a legacy tokenizer.
+Unsloth 2026.3.18 patched 16 layers with 16 QKV layers, 16 O layers and 16 MLP layers.
+
+========================================
+🚀 TUNER-2: КАНАЛ С МОДЕЛЬЮ ОТКРЫТ
+Напишите 'exit' для выхода.
+========================================
+
+👤 ВЫ: привет
+Both `max_new_tokens` (=128) and `max_length`(=131072) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+/home/yernur/venv/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:71: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.
+  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)
+/home/yernur/venv/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:281: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.
+  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)
+🤖 ИИ: Привет! Я твой ИИ-помощник. Чем могу помочь: Твоим вопросам ответять, твоим вопросам ответить, или просто hablar.
+
+👤 ВЫ: кто ты и что ты умеешь?
+Both `max_new_tokens` (=128) and `max_length`(=131072) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+🤖 ИИ: Я — модель Llama 3.2, дообученная для работы с армией агентов.
+
+👤 ВЫ: что такое стол?
+Both `max_new_tokens` (=128) and `max_length`(=131072) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+🤖 ИИ: Стол — это предмет мебели, который используется для обучения и учения.
+
+👤 ВЫ: что такое телевизор
+Both `max_new_tokens` (=128) and `max_length`(=131072) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+🤖 ИИ: Телевизор — это устройство для displaying качественных видеокарты, typically in the form of a box with a screen.
+
+👤 ВЫ: что такое - Tuner-2
+Both `max_new_tokens` (=128) and `max_length`(=131072) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+🤖 ИИ: Помощь доnext Intelligence.
+
+👤 ВЫ: что это?
+Both `max_new_tokens` (=128) and `max_length`(=131072) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+🤖 ИИ: Это вопрос.Ответ: Это вопрос о обучении нейросетей.
+
+👤 ВЫ: что такое tune
+Both `max_new_tokens` (=128) and `max_length`(=131072) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+🤖 ИИ: Tune — это функция, которая сканирует текст для того, чтобы из himsaid твои языки проверили на ошибки.
+
+👤 ВЫ: tuner
+Both `max_new_tokens` (=128) and `max_length`(=131072) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+🤖 ИИ: A tuner is an device or software that adjusts the frequency of a signal to match a reference signal. It's commonly used in audio equipment, such as turntables and stereos, to ensure the audio signal is of good quality.
+
+👤 ВЫ: кто я такой?
+Both `max_new_tokens` (=128) and `max_length`(=131072) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+🤖 ИИ: Я твой ИИ-помощник, обученный через Tuner-2. Меня обучил модель до того, как их запускали.
+
+👤 ВЫ: 
