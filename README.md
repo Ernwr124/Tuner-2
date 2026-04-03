@@ -26,19 +26,19 @@ Tuner-2 использует многоуровневую архитектуру
 ```mermaid
 graph TD
     %% Внешний слой
-    User((User)) --> CLI[CLI: <code>tuner</code>]
-    User --> WebUI[Web Dashboard 🌐<br>http://127.0.0.1:7890]
+    User((User)) --> CLI[CLI: tuner]
+    User --> WebUI[Web Dashboard 🌐<br>[http://127.0.0.1:7890](http://127.0.0.1:7890)]
 
     %% Слой авторизации и когнитивный движок
     AlemAI((Alem AI Plus API)) -.->|Cognitive Routing & State Logic| Comm
     
-    subgraph 1. Presentation Layer
+    subgraph Layer1 [1. Presentation Layer]
         CLI
         WebUI
     end
 
     %% Слой Оркестрации
-    subgraph 2. Multi-Agent Orchestration Layer
+    subgraph Layer2 [2. Multi-Agent Orchestration Layer]
         Comm[👑 Commander Agent]
         HE[⚙️ Hardware Expert]
         DS[📊 Data Scientist]
@@ -54,19 +54,19 @@ graph TD
     Comm -->|Training Monitor| SA
 
     %% Аппаратный слой
-    subgraph 3. Hardware Abstraction & Config
+    subgraph Layer3 [3. Hardware Abstraction & Config]
         HE -->|Scan| GPU[NVML / System RAM]
         HE -->|Dynamic Math| LoRA[LoRA Config Generator<br>r=16/32, alpha=r*2]
     end
 
     %% Слой данных
-    subgraph 4. Data Pipeline
+    subgraph Layer4 [4. Data Pipeline]
         DS -->|Validate JSONL| Parser[JSON Parser & Schema Checker]
         Parser -->|Check keys: prompt, completion| Tokenizer[Legacy Tokenizer & Padding]
     end
 
     %% Движок обучения
-    subgraph 5. Core Training Engine (Unsloth)
+    subgraph Layer5 [5. Core Training Engine]
         LoRA --> Engine[🦥 Unsloth Engine]
         Tokenizer --> Engine
         Engine -->|4-bit QLoRA + Xformers/FA2| SFT[SFTTrainer]
