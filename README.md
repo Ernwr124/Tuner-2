@@ -26,11 +26,11 @@ Tuner-2 использует многоуровневую архитектуру
 ```mermaid
 graph TD
     %% Внешний слой
-    User((User)) --> CLI[CLI: tuner]
-    User --> WebUI[Web Dashboard 🌐<br>[http://127.0.0.1:7890](http://127.0.0.1:7890)]
+    User((User)) --> CLI["CLI: tuner"]
+    User --> WebUI["Web Dashboard 🌐<br>[http://127.0.0.1:7890](http://127.0.0.1:7890)"]
 
     %% Слой авторизации и когнитивный движок
-    AlemAI((Alem AI Plus API)) -.->|Cognitive Routing & State Logic| Comm
+    AlemAI((Alem AI Plus API)) -.->|"Cognitive Routing & State Logic"| Comm
     
     subgraph Layer1 [1. Presentation Layer]
         CLI
@@ -39,45 +39,45 @@ graph TD
 
     %% Слой Оркестрации
     subgraph Layer2 [2. Multi-Agent Orchestration Layer]
-        Comm[👑 Commander Agent]
-        HE[⚙️ Hardware Expert]
-        DS[📊 Data Scientist]
-        SA[🛡️ Stability / Validator Agent]
+        Comm["👑 Commander Agent"]
+        HE["⚙️ Hardware Expert"]
+        DS["📊 Data Scientist"]
+        SA["🛡️ Stability / Validator Agent"]
     end
 
     CLI --> Comm
     WebUI --> Comm
 
     %% Распределение задач
-    Comm -->|Hardware Scan| HE
-    Comm -->|Dataset Prep| DS
-    Comm -->|Training Monitor| SA
+    Comm -->|"Hardware Scan"| HE
+    Comm -->|"Dataset Prep"| DS
+    Comm -->|"Training Monitor"| SA
 
     %% Аппаратный слой
     subgraph Layer3 [3. Hardware Abstraction & Config]
-        HE -->|Scan| GPU[NVML / System RAM]
-        HE -->|Dynamic Math| LoRA[LoRA Config Generator<br>r=16/32, alpha=r*2]
+        HE -->|Scan| GPU["NVML / System RAM"]
+        HE -->|"Dynamic Math"| LoRA["LoRA Config Generator<br>r=16/32, alpha=r*2"]
     end
 
     %% Слой данных
     subgraph Layer4 [4. Data Pipeline]
-        DS -->|Validate JSONL| Parser[JSON Parser & Schema Checker]
-        Parser -->|Check keys: prompt, completion| Tokenizer[Legacy Tokenizer & Padding]
+        DS -->|"Validate JSONL"| Parser["JSON Parser & Schema Checker"]
+        Parser -->|"Check keys: prompt, completion"| Tokenizer["Legacy Tokenizer & Padding"]
     end
 
     %% Движок обучения
     subgraph Layer5 [5. Core Training Engine]
-        LoRA --> Engine[🦥 Unsloth Engine]
+        LoRA --> Engine["🦥 Unsloth Engine"]
         Tokenizer --> Engine
-        Engine -->|4-bit QLoRA + Xformers/FA2| SFT[SFTTrainer]
+        Engine -->|"4-bit QLoRA + Xformers/FA2"| SFT["SFTTrainer"]
     end
 
-    SA -->|Traceback Analysis| SFT
-    SFT -.->|Vibe-Coding Hotfixes| SA
+    SA -->|"Traceback Analysis"| SFT
+    SFT -.->|"Vibe-Coding Hotfixes"| SA
 
     %% Выход и Инференс
-    SFT -->|Save Weights| Adapters[(tuner-model / LoRA Adapters)]
-    Adapters --> Inference[Chat / Inference Mode]
+    SFT -->|"Save Weights"| Adapters[("tuner-model / LoRA Adapters")]
+    Adapters --> Inference["Chat / Inference Mode"]
     User --> Inference
 
 ```
