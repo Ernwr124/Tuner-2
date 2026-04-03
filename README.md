@@ -83,6 +83,62 @@ Workflow под капотом:
     CLI & Orchestration: subprocess, асинхронное взаимодействие, интеллектуальный парсинг логов.
 
 
+graph TD
+    %% Внешний слой
+    User((User)) --> CLI[CLI: <code>tuner</code>]
+    User --> WebUI[Web Dashboard 🌐<br>http://127.0.0.1:7890]
+
+    %% Слой авторизации и когнитивный движок
+    AlemAI((Alem AI Plus API)) -.->|Cognitive Routing & State Logic| Comm
+    
+    subgraph 1. Presentation Layer
+        CLI
+        WebUI
+    end
+
+    %% Слой Оркестрации
+    subgraph 2. Multi-Agent Orchestration Layer
+        Comm[👑 Commander Agent]
+        HE[⚙️ Hardware Expert]
+        DS[📊 Data Scientist]
+        SA[🛡️ Stability / Validator Agent]
+    end
+
+    CLI --> Comm
+    WebUI --> Comm
+
+    %% Распределение задач
+    Comm -->|Hardware Scan| HE
+    Comm -->|Dataset Prep| DS
+    Comm -->|Training Monitor| SA
+
+    %% Аппаратный слой
+    subgraph 3. Hardware Abstraction & Config
+        HE -->|Scan| GPU[NVML / System RAM]
+        HE -->|Dynamic Math| LoRA[LoRA Config Generator<br>r=16/32, alpha=r*2]
+    end
+
+    %% Слой данных
+    subgraph 4. Data Pipeline
+        DS -->|Validate JSONL| Parser[JSON Parser & Schema Checker]
+        Parser -->|Check keys: prompt, completion| Tokenizer[Legacy Tokenizer & Padding]
+    end
+
+    %% Движок обучения
+    subgraph 5. Core Training Engine (Unsloth)
+        LoRA --> Engine[🦥 Unsloth Engine]
+        Tokenizer --> Engine
+        Engine -->|4-bit QLoRA + Xformers/FA2| SFT[SFTTrainer]
+    end
+
+    SA -->|Traceback Analysis| SFT
+    SFT -.->|Vibe-Coding Hotfixes| SA
+
+    %% Выход и Инференс
+    SFT -->|Save Weights| Adapters[(tuner-model / LoRA Adapters)]
+    Adapters --> Inference[Chat / Inference Mode]
+    User --> Inference
+
 
 ---
 Твоя модель - твои правила. 
