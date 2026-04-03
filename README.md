@@ -12,12 +12,75 @@
 
 ## 🌟 Ключевые архитектурные решения
 
-*   **Vibe-Coding (Self-Healing Infrastructure):** Динамическое разрешение зависимостей. Система в реальном времени анализирует логи и `traceback` ошибок, автоматически скачивает недостающие пакеты и применяет патчи к проблемным библиотекам "на лету".
-*   **Low-VRAM & Hardware-Aware Optimization:** Интеллектуальный профилировщик железа позволяет запускать полноценный fine-tuning (через LoRA/QLoRA) на потребительских видеокартах с 4 ГБ VRAM (например, RTX 2050) и чипах Apple Silicon (Metal API).
-*   **Multi-Agent Pipeline:** Децентрализованное управление процессом обучения через изолированных агентов со строгими зонами ответственности.
-*   **Ultra Stable Inference Mode:** Гарантированная стабильность генерации после завершения цикла обучения благодаря автоматическому подбору параметров квантования и предотвращению деградации весов модели.
+* **Vibe-Coding (Self-Healing Infrastructure):** Динамическое разрешение зависимостей. Система в реальном времени анализирует логи и `traceback` ошибок, автоматически скачивает недостающие пакеты и применяет патчи к проблемным библиотекам "на лету".
+* **Low-VRAM & Hardware-Aware Optimization:** Интеллектуальный профилировщик железа позволяет запускать полноценный fine-tuning (через LoRA/QLoRA) на потребительских видеокартах с 4 ГБ VRAM (например, RTX 2050) и чипах Apple Silicon (Metal API).
+* **Multi-Agent Pipeline:** Децентрализованное управление процессом обучения через изолированных агентов со строгими зонами ответственности.
+* **Ultra Stable Inference Mode:** Гарантированная стабильность генерации после завершения цикла обучения благодаря автоматическому подбору параметров квантования и предотвращению деградации весов модели.
 
 ---
+
+## 🧠 Полная архитектура системы (System Design)
+
+Tuner-2 использует многоуровневую архитектуру, разделяя пользовательский интерфейс, когнитивную маршрутизацию агентов и низкоуровневый движок обучения.
+
+```mermaid
+graph TD
+    %% Внешний слой
+    User((User)) --> CLI[CLI: <code>tuner</code>]
+    User --> WebUI[Web Dashboard 🌐<br>http://127.0.0.1:7890]
+
+    %% Слой авторизации и когнитивный движок
+    AlemAI((Alem AI Plus API)) -.->|Cognitive Routing & State Logic| Comm
+    
+    subgraph 1. Presentation Layer
+        CLI
+        WebUI
+    end
+
+    %% Слой Оркестрации
+    subgraph 2. Multi-Agent Orchestration Layer
+        Comm[👑 Commander Agent]
+        HE[⚙️ Hardware Expert]
+        DS[📊 Data Scientist]
+        SA[🛡️ Stability / Validator Agent]
+    end
+
+    CLI --> Comm
+    WebUI --> Comm
+
+    %% Распределение задач
+    Comm -->|Hardware Scan| HE
+    Comm -->|Dataset Prep| DS
+    Comm -->|Training Monitor| SA
+
+    %% Аппаратный слой
+    subgraph 3. Hardware Abstraction & Config
+        HE -->|Scan| GPU[NVML / System RAM]
+        HE -->|Dynamic Math| LoRA[LoRA Config Generator<br>r=16/32, alpha=r*2]
+    end
+
+    %% Слой данных
+    subgraph 4. Data Pipeline
+        DS -->|Validate JSONL| Parser[JSON Parser & Schema Checker]
+        Parser -->|Check keys: prompt, completion| Tokenizer[Legacy Tokenizer & Padding]
+    end
+
+    %% Движок обучения
+    subgraph 5. Core Training Engine (Unsloth)
+        LoRA --> Engine[🦥 Unsloth Engine]
+        Tokenizer --> Engine
+        Engine -->|4-bit QLoRA + Xformers/FA2| SFT[SFTTrainer]
+    end
+
+    SA -->|Traceback Analysis| SFT
+    SFT -.->|Vibe-Coding Hotfixes| SA
+
+    %% Выход и Инференс
+    SFT -->|Save Weights| Adapters[(tuner-model / LoRA Adapters)]
+    Adapters --> Inference[Chat / Inference Mode]
+    User --> Inference
+
+```
 
 ## 🏗 Системная архитектура (Multi-Agent Engine)
 
@@ -81,63 +144,6 @@ Workflow под капотом:
     LLM Ecosystem: Hugging Face transformers, peft (LoRA), trl (SFTTrainer), bitsandbytes.
 
     CLI & Orchestration: subprocess, асинхронное взаимодействие, интеллектуальный парсинг логов.
-
-
-graph TD
-    %% Внешний слой
-    User((User)) --> CLI[CLI: <code>tuner</code>]
-    User --> WebUI[Web Dashboard 🌐<br>http://127.0.0.1:7890]
-
-    %% Слой авторизации и когнитивный движок
-    AlemAI((Alem AI Plus API)) -.->|Cognitive Routing & State Logic| Comm
-    
-    subgraph 1. Presentation Layer
-        CLI
-        WebUI
-    end
-
-    %% Слой Оркестрации
-    subgraph 2. Multi-Agent Orchestration Layer
-        Comm[👑 Commander Agent]
-        HE[⚙️ Hardware Expert]
-        DS[📊 Data Scientist]
-        SA[🛡️ Stability / Validator Agent]
-    end
-
-    CLI --> Comm
-    WebUI --> Comm
-
-    %% Распределение задач
-    Comm -->|Hardware Scan| HE
-    Comm -->|Dataset Prep| DS
-    Comm -->|Training Monitor| SA
-
-    %% Аппаратный слой
-    subgraph 3. Hardware Abstraction & Config
-        HE -->|Scan| GPU[NVML / System RAM]
-        HE -->|Dynamic Math| LoRA[LoRA Config Generator<br>r=16/32, alpha=r*2]
-    end
-
-    %% Слой данных
-    subgraph 4. Data Pipeline
-        DS -->|Validate JSONL| Parser[JSON Parser & Schema Checker]
-        Parser -->|Check keys: prompt, completion| Tokenizer[Legacy Tokenizer & Padding]
-    end
-
-    %% Движок обучения
-    subgraph 5. Core Training Engine (Unsloth)
-        LoRA --> Engine[🦥 Unsloth Engine]
-        Tokenizer --> Engine
-        Engine -->|4-bit QLoRA + Xformers/FA2| SFT[SFTTrainer]
-    end
-
-    SA -->|Traceback Analysis| SFT
-    SFT -.->|Vibe-Coding Hotfixes| SA
-
-    %% Выход и Инференс
-    SFT -->|Save Weights| Adapters[(tuner-model / LoRA Adapters)]
-    Adapters --> Inference[Chat / Inference Mode]
-    User --> Inference
 
 
 ---
